@@ -1,0 +1,153 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ActivityLevel {
+  Low
+  Moderate
+  High
+}
+
+enum MoodOption {
+  calm
+  angry
+  low
+  confident
+  neutral
+}
+
+enum CheckinOption {
+  stayed_consistent
+  resisted_urges
+  relapsed
+}
+
+enum Language {
+  English
+  Hindi
+}
+
+model User {
+  id               String   @id @default(uuid())
+  email            String?  @unique
+  password         String?
+  age              Int?
+  language         Language @default(English)
+  adultModeEnabled Boolean  @default(false)
+  consentAccepted  Boolean  @default(false)
+  isGuest          Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  profile       HealthProfile?
+  streak        Streak?
+  moodLogs      MoodLog[]
+  moduleProgress ModuleProgress[]
+  chatLogs      ChatLog[]
+
+  @@map("users")
+}
+
+model HealthProfile {
+  id            String        @id @default(uuid())
+  userId        String        @unique
+  height        Float?
+  weight        Float?
+  sleepHours    Float?
+  activityLevel ActivityLevel @default(Moderate)
+  goals         String[]
+  bmi           Float?
+  riskScore     Float?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("health_profiles")
+}
+
+model Streak {
+  id            String    @id @default(uuid())
+  userId        String    @unique
+  currentStreak Int       @default(0)
+  longestStreak Int       @default(0)
+  targetDays    Int       @default(30)
+  lastCheckDate DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  checkins StreakCheckin[]
+  user     User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("streaks")
+}
+
+model StreakCheckin {
+  id        String        @id @default(uuid())
+  streakId  String
+  option    CheckinOption
+  date      DateTime      @default(now())
+
+  streak Streak @relation(fields: [streakId], references: [id], onDelete: Cascade)
+
+  @@map("streak_checkins")
+}
+
+model MoodLog {
+  id        String     @id @default(uuid())
+  userId    String
+  mood      MoodOption
+  note      String?
+  logDate   DateTime   @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("mood_logs")
+}
+
+model Module {
+  id          String @id @default(uuid())
+  title       String
+  description String
+  category    String
+  isAdultOnly Boolean @default(false)
+  order       Int     @default(0)
+  createdAt   DateTime @default(now())
+
+  progress ModuleProgress[]
+
+  @@map("modules")
+}
+
+model ModuleProgress {
+  id          String   @id @default(uuid())
+  userId      String
+  moduleId    String
+  completed   Boolean  @default(false)
+  completedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  module Module @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, moduleId])
+  @@map("module_progress")
+}
+
+model ChatLog {
+  id        String   @id @default(uuid())
+  userId    String
+  message   String
+  response  String
+  timestamp DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("chat_logs")
+}
