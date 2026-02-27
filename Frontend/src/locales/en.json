@@ -1,0 +1,95 @@
+{
+  "app": {
+    "name": "Male Parikshan",
+    "tagline": "Strong Body. Calm Mind. Responsible Man."
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "modules": "Modules",
+    "streak": "Streak",
+    "mood": "Mood",
+    "chat": "AI Chat",
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "guestLogin": "Continue as Guest",
+    "email": "Email",
+    "password": "Password",
+    "age": "Age",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "registerHere": "Register here",
+    "loginHere": "Login here"
+  },
+  "onboarding": {
+    "title": "Complete Your Profile",
+    "subtitle": "Help us personalize your journey",
+    "height": "Height (cm)",
+    "weight": "Weight (kg)",
+    "sleep": "Sleep Hours",
+    "activity": "Activity Level",
+    "goals": "Your Goals",
+    "submit": "Calculate & Continue"
+  },
+  "dashboard": {
+    "title": "Your Dashboard",
+    "healthScore": "Health Score",
+    "currentStreak": "Current Streak",
+    "todayMood": "Today's Mood",
+    "days": "days",
+    "notLogged": "Not logged"
+  },
+  "streak": {
+    "title": "Streak Tracker",
+    "current": "Current Streak",
+    "longest": "Longest Streak",
+    "target": "Target",
+    "checkin": "Daily Check-In",
+    "consistent": "Stayed Consistent",
+    "resisted": "Resisted Urges",
+    "relapsed": "Relapsed",
+    "setup": "Setup Your Streak",
+    "targetDays": "Target Days",
+    "start": "Start Tracking"
+  },
+  "mood": {
+    "title": "Mood Tracker",
+    "logToday": "How are you feeling today?",
+    "alreadyLogged": "Mood logged for today",
+    "report": "Weekly Report",
+    "distribution": "Mood Distribution"
+  },
+  "modules": {
+    "title": "Learning Modules",
+    "completed": "Completed",
+    "markComplete": "Mark as Complete",
+    "duration": "Duration"
+  },
+  "chat": {
+    "title": "AI Chat",
+    "placeholder": "Ask me anything about men's health...",
+    "send": "Send",
+    "thinking": "Thinking..."
+  },
+  "adult": {
+    "title": "Adult Mode",
+    "description": "Access advanced health content for adults 18+",
+    "disclaimer": "This section contains mature health content. By enabling adult mode, you confirm you are 18 or older and consent to view this content.",
+    "enable": "Enable Adult Mode",
+    "accept": "I Accept & Enable",
+    "cancel": "Cancel",
+    "ageRestricted": "You must be 18 or older to access this section.",
+    "enabled": "Adult Mode Enabled"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "save": "Save",
+    "cancel": "Cancel",
+    "back": "Back",
+    "next": "Next"
+  }
+}

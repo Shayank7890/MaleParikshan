@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-obsidian text-white font-body;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-surface;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-subtle rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-elevated border border-border rounded-2xl p-6;
+  }
+
+  .btn-primary {
+    @apply bg-accent hover:bg-accent-dim text-white font-display font-semibold px-6 py-3 rounded-xl transition-all duration-200 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-subtle hover:bg-border text-white font-display font-medium px-6 py-3 rounded-xl transition-all duration-200 active:scale-95;
+  }
+
+  .btn-ghost {
+    @apply text-muted hover:text-white font-display font-medium px-4 py-2 rounded-lg transition-all duration-200;
+  }
+
+  .input-field {
+    @apply w-full bg-surface border border-border rounded-xl px-4 py-3 text-white placeholder-muted font-body focus:outline-none focus:border-accent transition-colors duration-200;
+  }
+
+  .label {
+    @apply block text-sm font-display font-medium text-muted mb-2;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono font-medium;
+  }
+
+  .section-title {
+    @apply font-display text-2xl font-bold text-white;
+  }
+
+  .page-container {
+    @apply min-h-screen bg-obsidian;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-accent to-gold bg-clip-text text-transparent;
+  }
+
+  .border-gradient {
+    background: linear-gradient(135deg, #e86c2f20, #d4a85320);
+    border: 1px solid #e86c2f30;
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px rgba(232, 108, 47, 0.15);
+  }
+
+  .noise-bg {
+    position: relative;
+  }
+
+  .noise-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    border-radius: inherit;
+  }
+}
