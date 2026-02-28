@@ -1,13 +1,21 @@
-import api from './api'
-
-export interface ChatResponse {
-  message: string
-  id: string
-}
+import api from "./api"
 
 export const chatService = {
-  send: async (message: string) => {
-    const res = await api.post<ChatResponse>('/chat', { message })
-    return res.data
+  async send(
+    message: string,
+    mode: "normal" | "adult" = "normal"
+  ) {
+    const res = await api.post("/chat", {
+      message,
+      mode,
+    })
+
+    // Backend returns:
+    // {
+    //   success: true,
+    //   data: { message, response, timestamp }
+    // }
+
+    return res.data.data
   },
 }
